@@ -4,32 +4,34 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public CharacterController controller;
-    public Transform cameraFollow;
-    public Transform playerHead;
-    
+
+
+    [Header ("Player Movement Setting")]
     public float standSpeed = 5f;
     public float crouchSpeed = 2f;
     public float jumpStr = 1f;
     public float gravity = -9.8f;
     public float slideSpeed = 2f;
 
-
+    [Header("Player Checks")]
+    public CharacterController controller;
+    public Transform cameraFollow;
+    public Transform playerHead;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
 
 
-    Vector3 velocity;
+    private Vector3 velocity;
    
 
-    bool isGrounded;
-    bool isCrouching;
+    private bool isGrounded;
+    private bool isCrouching;
 
-    float crouchHeight;
-    float standHeight;
-    float speed;
+    private float crouchHeight;
+    private float standHeight;
+    private float speed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -86,14 +88,16 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && velocity.y < 0)
             {
                 velocity.y = -2f;
-                Debug.Log("Grounded");
+                if (DebugController.PlayerLog)
+                    Debug.Log("Grounded");
             }
 
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 velocity.y = Mathf.Sqrt(-2 * jumpStr * gravity);
-                Debug.Log("Jumping");
+                if (DebugController.PlayerLog)
+                    Debug.Log("Jumping");
             }
 
             velocity.y += gravity * Time.deltaTime;
