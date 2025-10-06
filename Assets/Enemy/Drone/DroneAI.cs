@@ -18,29 +18,32 @@ public class DroneAI : MonoBehaviour
     public float angle;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
+    private bool spottedByDrone = false;
 
     [Header("Patrolling Setting")]
     public Transform[] patrolPoints = new Transform[0];
     public Transform patrolStart;
     private Transform target;
 
-    [Header("Stealth Settings")]
-    [Range(0.0f, 10.0f)]
-    public float noticeMeter;
-    [Range(0.1f, 2.0f)]
-    public float noticeSpeed;
+    //moved to PlayerStats
+    //[Header("Stealth Settings")]
+    //[Range(0.0f, 10.0f)]
+    //public float noticeMeter;
+    //[Range(0.1f, 2.0f)]
+    //public float noticeSpeed;
     //private bool playerSpotted;
     private bool canSeePlayer = true;
-    [Range(0.1f, 2.0f)]
-    public float decaySpeed = 0.5f;
+    //[Range(0.1f, 2.0f)]
+    //public float decaySpeed = 0.5f;
     private Vector3 lastKnownPlayerPosition;
+    private static float noticeMeter;
 
     [Header("Search Settings")]
     public float sweepTime;
     private float sweepAngle;
 
-    private DroneState currentState = DroneState.Patrolling;
-    private enum DroneState
+    private static GuardState currentState = GuardState.Patrolling;
+    private enum GuardState
     {
         Patrolling,
         Chasing,
@@ -48,30 +51,44 @@ public class DroneAI : MonoBehaviour
         Returning
     }
 
+
+
+    private Renderer renderer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        renderer = GetComponent<Renderer>();
+        playerLoc = GameObject.FindWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
         target = patrolStart;
         agent.speed = speed;
+
+       
+
+      
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         MeterCheck();
         LookForPlayer();
         CheckStateTransitions();
         switch (currentState)
         {
-            case DroneState.Patrolling:
+            case GuardState.Patrolling:
                 Patrol();
+                renderer.material.color = Color.black;
                 break;
-            case DroneState.Chasing:
+            case GuardState.Chasing:
                 FollowPlayer();
+                renderer.material.color = Color.red;
                 break;
-            case DroneState.Searching:
+            case GuardState.Searching:
                 SearchNearby();
+                renderer.material.color = Color.yellow;
                 break;
                 //case DroneState.Returning:
                 //    ReturnUpdate();
@@ -90,33 +107,35 @@ public class DroneAI : MonoBehaviour
 
     private void CheckStateTransitions()
     {
-        if (noticeMeter >= 10f && currentState != DroneState.Chasing)
+        if (noticeMeter >= 10f && currentState != GuardState.Chasing && spottedByDrone)
         {
             if (DebugController.DroneLog)
                 Debug.Log("Start Chasing");
-            currentState = DroneState.Chasing;
-            agent.isStopped = false;
-        }
-        else if (noticeMeter <= 2f && currentState != DroneState.Patrolling)
-        {
-            if (DebugController.DroneLog)
-                Debug.Log("Stopping Chase");
-            currentState = DroneState.Patrolling;
-            agent.isStopped = false;
-        }
-        else if (noticeMeter >= 5f && noticeMeter < 10f && !canSeePlayer && currentState == DroneState.Chasing)
-        {
-            if (DebugController.DroneLog)
-                Debug.Log("Start Searching");
-            currentState = DroneState.Searching;
+            currentState = GuardState.Chasing;
             agent.isStopped = false;
             
         }
-        else if (noticeMeter >= 5f && noticeMeter < 10f && canSeePlayer && currentState == DroneState.Searching)
+        else if (noticeMeter <= 2f && currentState != GuardState.Patrolling)
+        {
+            if (DebugController.DroneLog)
+                Debug.Log("Stopping Chase");
+            currentState = GuardState.Patrolling;
+            agent.isStopped = false;
+        }
+        else if (noticeMeter >= 5f && noticeMeter < 10f && !canSeePlayer && currentState == GuardState.Chasing)
+        {
+            if (DebugController.DroneLog)
+                Debug.Log("Start Searching");
+            currentState = GuardState.Searching;
+            agent.isStopped = false;
+            
+
+        }
+        else if (noticeMeter >= 5f && noticeMeter < 10f && canSeePlayer && currentState == GuardState.Searching)
         {
             if (DebugController.DroneLog)
                 Debug.Log("Resume Chase");
-            currentState = DroneState.Chasing;
+            currentState = GuardState.Chasing;
             agent.isStopped = false;
             noticeMeter = 10f;
 
@@ -144,7 +163,7 @@ public class DroneAI : MonoBehaviour
     private void SearchNearby()
     {
         agent.SetDestination(lastKnownPlayerPosition);
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (DebugController.DroneLog)
                 Debug.Log("Sweeping");
@@ -204,7 +223,8 @@ public class DroneAI : MonoBehaviour
 
         if (angleBetween > angle || distance > detectionRadius) 
         { 
-            canSeePlayer = false; 
+            canSeePlayer = false;
+            spottedByDrone = false;
             return; 
         }
 
@@ -216,6 +236,7 @@ public class DroneAI : MonoBehaviour
             if (hit.transform != playerLoc)
             {
                 canSeePlayer = false;
+                spottedByDrone = false;
                 if (DebugController.DroneLog)
                     Debug.Log("Hit: " + hit.collider.name);
             }
@@ -232,6 +253,7 @@ public class DroneAI : MonoBehaviour
             if (DebugController.DroneLog)
                 Debug.Log("Player Spotted");
             agent.isStopped = true;
+            spottedByDrone = true;
             LookAtPlayer();
             lastKnownPlayerPosition = playerLoc.position;
         }
@@ -246,24 +268,14 @@ public class DroneAI : MonoBehaviour
 
     }
 
-
-
-
     private void MeterCheck()
     {
         if (canSeePlayer)
         {
-           
-            noticeMeter += noticeSpeed * Time.deltaTime;
-            
-        }
-        else
-        {
-            
-            noticeMeter -= decaySpeed * Time.deltaTime;
+            PlayerStats.AddStealth();
         }
 
-        noticeMeter = Mathf.Clamp(noticeMeter, 0f, 10f);
+        noticeMeter = PlayerStats.GetStealth();
 
         if (noticeMeter <= 0)
         {
@@ -271,6 +283,12 @@ public class DroneAI : MonoBehaviour
                 Debug.Log("Resume Path");
             agent.isStopped = false;
         }
+    }
+
+
+    public bool PlayerBeingSeen() 
+    {
+        return canSeePlayer;
     }
 
     

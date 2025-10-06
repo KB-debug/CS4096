@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    private static PlayerController instance;
     public float speed = 5f;
 
     public Transform orientation;
@@ -16,6 +16,19 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDir;
 
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

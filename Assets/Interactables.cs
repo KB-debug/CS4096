@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class Interactables : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -11,6 +11,16 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+
+    public void Interact()
+    {
+        if (DebugController.InteractLog)
+            Debug.Log("Interaction Occured");
+
+        PlayerStats.ClearStealth();
         
     }
 }
