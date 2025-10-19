@@ -1,17 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class CompanionAI : MonoBehaviour
 {
     [Header("Follow Settings")]
-    public Transform player;          
+    public Transform player;
     public float followDistance = 2f;
     public float stoppingDistance = 1f;
     public float turnSpeed = 5f;
 
-    [Header("Detection Settings")]
+    [Header("Enemy Detection Settings")]
     public float enemyDetectionRadius = 10f;
+    // public float viewAngle = 100f; 
     public string[] enemyTags = { "Drone", "Guard" };
+    public LayerMask obstacleMask;
 
     [Header("NavMesh Agent")]
     public NavMeshAgent agent;
@@ -40,18 +42,16 @@ public class CompanionAI : MonoBehaviour
         Vector3 direction = player.position - transform.position;
         float distance = direction.magnitude;
 
-        // Going to add better obstical clearance
         if (distance > followDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(player.position - direction.normalized * 1f); // Keeps distance
+            agent.SetDestination(player.position - direction.normalized * 1f);
         }
         else
         {
             agent.isStopped = true;
         }
 
-        
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -59,18 +59,36 @@ public class CompanionAI : MonoBehaviour
         }
     }
 
-    private void DetectEnemies() // Planning on making it line of sight based
+    private void DetectEnemies()
     {
-        Collider[] enemies = Physics.OverlapSphere(transform.position, enemyDetectionRadius);
-
-        foreach (Collider enemy in enemies)
+        foreach (string tag in enemyTags)
         {
-            foreach (string tag in enemyTags)
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(tag);
+
+            foreach (GameObject enemy in enemies)
             {
-                if (enemy.CompareTag(tag))
+                Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distanceToEnemy > enemyDetectionRadius)
+                    continue;
+
+                
+                // float angleToEnemy = Vector3.Angle(transform.forward, directionToEnemy);
+                // if (angleToEnemy > viewAngle / 2f)
+                // continue;
+
+                if (!Physics.Raycast(transform.position + Vector3.up * 1f, directionToEnemy, distanceToEnemy, obstacleMask))
                 {
-                    Debug.DrawLine(transform.position, enemy.transform.position, Color.red);
-                    // Planning on adding a FSM or Behavior tree on what to do when an enemy is spotted
+                    // Enemy Detection Reaction:
+                    Debug.DrawLine(transform.position, enemy.transform.position, Color.red); // Clean up later
+
+                    Outline outline = enemy.GetComponent<Outline>();
+                    if (outline != null)
+                    {
+                        outline.enabled = true; // Might add a fade quick fade out so it doesnt look choppy
+
+                    }
                 }
             }
         }
@@ -83,5 +101,14 @@ public class CompanionAI : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemyDetectionRadius);
+
+        
+        /*
+        Gizmos.color = Color.yellow;
+        Vector3 leftBoundary = Quaternion.Euler(0, -viewAngle / 2f, 0) * transform.forward;
+        Vector3 rightBoundary = Quaternion.Euler(0, viewAngle / 2f, 0) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + leftBoundary * enemyDetectionRadius);
+        Gizmos.DrawLine(transform.position, transform.position + rightBoundary * enemyDetectionRadius);
+        */
     }
 }

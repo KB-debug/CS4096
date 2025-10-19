@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Drone
   - Guard
+  - Companion
   layers:
   - Default
   - TransparentFX
