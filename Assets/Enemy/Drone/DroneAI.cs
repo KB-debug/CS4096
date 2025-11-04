@@ -36,12 +36,18 @@ public class DroneAI : MonoBehaviour
     //[Range(0.1f, 2.0f)]
     //public float decaySpeed = 0.5f;
     private Vector3 lastKnownPlayerPosition;
+
+    // Shared alert level across all drones
+    // (When one drone spots the player, all enter the same state)
     private static float noticeMeter;
 
     [Header("Search Settings")]
     public float sweepTime;
     private float sweepAngle;
 
+
+    // Shared state across all drones
+    // (When one drone spots the player, all enter the same state)
     private static GuardState currentState = GuardState.Patrolling;
     private enum GuardState
     {
@@ -90,9 +96,7 @@ public class DroneAI : MonoBehaviour
                 SearchNearby();
                 renderer.material.color = Color.yellow;
                 break;
-                //case DroneState.Returning:
-                //    ReturnUpdate();
-                //    break;
+                
         }
 
 
