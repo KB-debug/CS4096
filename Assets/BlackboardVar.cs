@@ -19,6 +19,5 @@ public class BlackboardVar : MonoBehaviour
     {
         Vector3 backwardsVector = -transform.forward * backwardForce + Vector3.up * upwardsForce;
         behaviorGraphAgent.SetVariableValue<Vector3>("Backwords Force", backwardsVector);
-        Debug.Log("Trying to change var");
     }
 }

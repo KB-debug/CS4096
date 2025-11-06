@@ -277,70 +277,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &327035003
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 327035005}
-  - component: {fileID: 327035004}
-  m_Layer: 0
-  m_Name: NavMesh Surface
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &327035004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327035003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
-  m_SerializedVersion: 0
-  m_AgentTypeID: -334000983
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 3831
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 5f5820687552d904486cf191542492d8, type: 2}
-  m_BuildHeightMesh: 0
---- !u!4 &327035005
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327035003}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 108.36698, y: 0, z: 67.02693}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &739934020 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8763786607500794661, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
@@ -628,6 +564,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 465555539500135092, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1655085437922861662, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -1045,7 +985,7 @@ Transform:
   m_GameObject: {fileID: 1799177859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00001, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00001, y: 1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1242,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 2130528735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.999132, z: -0, w: -0.041658603}
-  m_LocalPosition: {x: 8.4, y: 6, z: 38.8}
+  m_LocalPosition: {x: 8.4, y: 65.6, z: 38.8}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1259,7 +1199,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130528735}
   serializedVersion: 5
-  m_Mass: 50
+  m_Mass: 10
   m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1303,6 +1243,7 @@ MonoBehaviour:
   - rid: 354746564483744547
   - rid: 354746587937768189
   - rid: 354746587965030533
+  - rid: 354746589600023246
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1331,7 +1272,7 @@ MonoBehaviour:
           m_Value0: 8530416790686005817
           m_Value1: 16314160882557016810
         Name: SelfHealth
-        m_Value: 100
+        m_Value: 65
     - rid: 354746587965030533
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1340,6 +1281,14 @@ MonoBehaviour:
           m_Value1: 15671823991173017328
         Name: CenterOfArena
         m_Value: {fileID: 1799177860}
+    - rid: 354746589600023246
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13323809270671296996
+          m_Value1: 2784447615798845324
+        Name: JumpDuration
+        m_Value: 2
     - rid: 2843803872127352848
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1387,7 +1336,7 @@ MonoBehaviour:
           m_Value0: 8173913924691206947
           m_Value1: 16833692901200959550
         Name: ChaseRange
-        m_Value: 38
+        m_Value: 35
     - rid: 2843803939790389515
       type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1413,8 +1362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorGraphAgent: {fileID: 2130528741}
-  backwardForce: 8
-  upwardsForce: 2
+  backwardForce: 30
+  upwardsForce: 10
 --- !u!114 &2130528743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,28 +1382,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
---- !u!195 &2130528744
-NavMeshAgent:
+--- !u!114 &2130528744
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130528735}
   m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2861b933d2d9b194cbc6325e3bce89fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  extraGravity: 300
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1468,4 +1408,3 @@ SceneRoots:
   - {fileID: 1483713805}
   - {fileID: 781581493}
   - {fileID: 1799177860}
-  - {fileID: 327035005}

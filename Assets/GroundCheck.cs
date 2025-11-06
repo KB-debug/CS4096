@@ -14,11 +14,14 @@ public class GroundCheck : MonoBehaviour
     private BehaviorGraphAgent behaviorGraphAgent;
 
 
+    private BossStart bs;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         behaviorGraphAgent = GetComponent<BehaviorGraphAgent>();
+        bs = GetComponent<BossStart>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,10 @@ public class GroundCheck : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayer);
         behaviorGraphAgent.SetVariableValue<Boolean>("IsGrounded", isGrounded);
 
+
+        if (isGrounded) {
+            bs.enabled = false;
+        }
     }
 
 }

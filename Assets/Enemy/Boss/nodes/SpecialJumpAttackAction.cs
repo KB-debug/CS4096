@@ -40,9 +40,9 @@ public partial class SpecialJumpAttackAction : Action
             return Status.Failure;
 
         elapsed += Time.deltaTime;
-        float t = Mathf.Clamp01(elapsed / jumpDuration);
+        float t = Mathf.Clamp01(elapsed / jumpDuration.Value);
 
-        float heightOffset = 4 * jumpHeight * t * (1 - t);
+        float heightOffset = 4 * jumpHeight.Value * t * (1 - t);
         Vector3 currentPos = Vector3.Lerp(startPos, endPos, t);
         currentPos.y += heightOffset;
 
@@ -54,13 +54,14 @@ public partial class SpecialJumpAttackAction : Action
             {
                 UnityEngine.Object.Instantiate(Attack.Value,Agent.Value.position,Quaternion.identity);
             }
-
-        }
             return Status.Success;
+        }
+            return Status.Running;
     }
 
     protected override void OnEnd()
     {
+    
     }
 }
 
