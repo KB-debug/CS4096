@@ -11,9 +11,22 @@ public partial class ShootAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<GameObject> AgentShootPoint;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
+    [SerializeReference] public BlackboardVariable<GameObject> BulletPrefab;
 
     protected override Status OnStart()
     {
+        GameObject shootPoint = AgentShootPoint.Value;
+        GameObject bulletPrefab = BulletPrefab.Value;
+        GameObject target = Target.Value;
+
+        if (shootPoint == null || bulletPrefab == null)
+        {
+            Debug.Log("ShootAction: Missing ShootPoint or BulletPrefab.");
+            return Status.Failure;
+        }
+
+        GameObject bullet = UnityEngine.Object.Instantiate(bulletPrefab,shootPoint.transform.position,shootPoint.transform.rotation);
+
         return Status.Running;
     }
 

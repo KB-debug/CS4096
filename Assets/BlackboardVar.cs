@@ -6,6 +6,8 @@ public class BlackboardVar : MonoBehaviour
 {
 
     public BehaviorGraphAgent behaviorGraphAgent;
+    public float backwardForce;
+    public float upwardsForce;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +17,7 @@ public class BlackboardVar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 backwardsVector = -transform.forward * 2f + Vector3.up * 8f;
+        Vector3 backwardsVector = -transform.forward * backwardForce + Vector3.up * upwardsForce;
         behaviorGraphAgent.SetVariableValue<Vector3>("Backwords Force", backwardsVector);
         Debug.Log("Trying to change var");
     }
