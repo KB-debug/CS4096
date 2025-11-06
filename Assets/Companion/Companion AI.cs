@@ -11,9 +11,7 @@ public class CompanionAI : MonoBehaviour
 
     [Header("Enemy Detection Settings")]
     public float enemyDetectionRadius = 10f;
-    // public float viewAngle = 100f; 
     public string[] enemyTags = { "Drone", "Guard" };
-    public LayerMask obstacleMask;
 
     [Header("NavMesh Agent")]
     public NavMeshAgent agent;
@@ -21,7 +19,7 @@ public class CompanionAI : MonoBehaviour
     private void Start()
     {
         if (player == null)
-            player = GameObject.FindWithTag("Player").transform;
+            player = GameObject.FindWithTag("Player")?.transform;
 
         if (agent == null)
             agent = GetComponent<NavMeshAgent>();
@@ -67,28 +65,22 @@ public class CompanionAI : MonoBehaviour
 
             foreach (GameObject enemy in enemies)
             {
-                Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (!enemy) continue;
 
-                if (distanceToEnemy > enemyDetectionRadius)
-                    continue;
+                Outline outline = enemy.GetComponent<Outline>();
+                if (!outline) continue;
 
-                
-                // float angleToEnemy = Vector3.Angle(transform.forward, directionToEnemy);
-                // if (angleToEnemy > viewAngle / 2f)
-                // continue;
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-                if (!Physics.Raycast(transform.position + Vector3.up * 1f, directionToEnemy, distanceToEnemy, obstacleMask))
+                // ✅ Highlight if in range, disable if out of range
+                if (distance <= enemyDetectionRadius)
                 {
-                    // Enemy Detection Reaction:
-                    Debug.DrawLine(transform.position, enemy.transform.position, Color.red); // Clean up later
-
-                    Outline outline = enemy.GetComponent<Outline>();
-                    if (outline != null)
-                    {
-                        outline.enabled = true; // Might add a fade quick fade out so it doesnt look choppy
-
-                    }
+                    outline.enabled = true;
+                    Debug.DrawLine(transform.position, enemy.transform.position, Color.red);
+                }
+                else
+                {
+                    outline.enabled = false;
                 }
             }
         }
@@ -101,14 +93,17 @@ public class CompanionAI : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemyDetectionRadius);
-
-        
         /*
-        Gizmos.color = Color.yellow;
-        Vector3 leftBoundary = Quaternion.Euler(0, -viewAngle / 2f, 0) * transform.forward;
-        Vector3 rightBoundary = Quaternion.Euler(0, viewAngle / 2f, 0) * transform.forward;
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary * enemyDetectionRadius);
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary * enemyDetectionRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Vector3 forward = transform.forward * detectionRadius;
+        Quaternion leftRotation = Quaternion.Euler(0, -angle, 0);
+        Quaternion rightRotation = Quaternion.Euler(0, angle, 0);
+        Vector3 leftDir = leftRotation * forward;
+        Vector3 rightDir = rightRotation * forward;
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + leftDir);
+        Gizmos.DrawLine(transform.position, transform.position + rightDir);
         */
     }
 }
