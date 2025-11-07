@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1483713802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -954,11 +954,42 @@ Transform:
   m_GameObject: {fileID: 1483713801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3, y: 12.76, z: 15.572504}
+  m_LocalPosition: {x: 13.3, y: 12.76, z: 56.9}
   m_LocalScale: {x: 34.513, y: -29.53, z: 1.9875}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1724980943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724980944}
+  m_Layer: 10
+  m_Name: TrapPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724980944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724980943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2130528739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799177859
 GameObject:
@@ -1002,6 +1033,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad22aba1b8af34b4aa73c7b7d7cca746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!136 &1819562557
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849398304}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1834059917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1065,7 +1119,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7114686780367666465, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1819562557}
   m_SourcePrefab: {fileID: 100100000, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
 --- !u!4 &2036095850 stripped
 Transform:
@@ -1089,6 +1146,7 @@ GameObject:
   - component: {fileID: 2130528742}
   - component: {fileID: 2130528743}
   - component: {fileID: 2130528744}
+  - component: {fileID: 2130528745}
   m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
@@ -1189,6 +1247,7 @@ Transform:
   - {fileID: 1378900434}
   - {fileID: 1014812807}
   - {fileID: 192151237}
+  - {fileID: 1724980944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 184.775, z: 0}
 --- !u!54 &2130528740
@@ -1244,6 +1303,8 @@ MonoBehaviour:
   - rid: 354746587937768189
   - rid: 354746587965030533
   - rid: 354746589600023246
+  - rid: 354746607995716001
+  - rid: 354746609245356205
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1272,7 +1333,7 @@ MonoBehaviour:
           m_Value0: 8530416790686005817
           m_Value1: 16314160882557016810
         Name: SelfHealth
-        m_Value: 65
+        m_Value: 100
     - rid: 354746587965030533
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1289,6 +1350,22 @@ MonoBehaviour:
           m_Value1: 2784447615798845324
         Name: JumpDuration
         m_Value: 2
+    - rid: 354746607995716001
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11287278179338931289
+          m_Value1: 6618838338323841862
+        Name: TrapPrefab
+        m_Value: {fileID: 1971696176706697294, guid: 71185ad37614c244688cdfe45cca650f, type: 3}
+    - rid: 354746609245356205
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1538931363456074361
+          m_Value1: 10659300590411741896
+        Name: MaxJump
+        m_Value: 3
     - rid: 2843803872127352848
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1395,6 +1472,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   extraGravity: 300
+--- !u!114 &2130528745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130528735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533fb334abd6c5d488002f1cfb842be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
