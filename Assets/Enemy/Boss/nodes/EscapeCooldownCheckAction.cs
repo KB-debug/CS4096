@@ -14,6 +14,7 @@ public partial class EscapeCooldownCheckAction : Action
     [SerializeReference] public BlackboardVariable<float> TimeTillReset;
     [SerializeReference] public BlackboardVariable<int> JumpCount;
 
+    private float t;
     private bool hasReset = false;
     protected override Status OnStart()
 
@@ -25,26 +26,35 @@ public partial class EscapeCooldownCheckAction : Action
             return Status.Failure;
         }
 
-        Agent.Value.GetComponent<MonoBehaviour>().StartCoroutine(Countdown());
+        t = 0f;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        return hasReset ? Status.Success : Status.Running;
+        
+        t += Time.deltaTime;
+        Debug.Log(t);
+
+        while (t < TimeTillReset) { 
+            return Status.Running;
+        }
+        JumpCount.Value = 0;
+
+        return Status.Success;
     }
 
     protected override void OnEnd()
     {
-        hasReset = true;
+        
     }
 
-    private IEnumerator Countdown()
-    {
-        yield return new WaitForSeconds(TimeTillReset.Value);
-        JumpCount.Value = 0;
-        CanEscape.Value = true;
-        hasReset = true;
-    }
+    //private IEnumerator Countdown()
+    //{
+    //    yield return new WaitForSeconds(TimeTillReset.Value);
+    //    JumpCount.Value = 0;
+    //    CanEscape.Value = true;
+    //    hasReset = true;
+    //}
 }
 
