@@ -33,7 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private float standHeight;
     private float speed;
 
-
+    [HideInInspector] public Vector3 Velocity { get; private set; }
+    private Vector3 lastPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Stand();
         }
+
+        Velocity = (transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = transform.position;
 
     }
 

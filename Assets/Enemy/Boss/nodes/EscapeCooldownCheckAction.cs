@@ -14,7 +14,7 @@ public partial class EscapeCooldownCheckAction : Action
     [SerializeReference] public BlackboardVariable<float> TimeTillReset;
     [SerializeReference] public BlackboardVariable<int> JumpCount;
 
-    private float t;
+    [SerializeReference] public BlackboardVariable<float> t;
     private bool hasReset = false;
     protected override Status OnStart()
 
@@ -26,15 +26,14 @@ public partial class EscapeCooldownCheckAction : Action
             return Status.Failure;
         }
 
-        t = 0f;
+        t.Value = 0f;
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
         
-        t += Time.deltaTime;
-        Debug.Log(t);
+        t.Value += Time.deltaTime;
 
         while (t < TimeTillReset) { 
             return Status.Running;

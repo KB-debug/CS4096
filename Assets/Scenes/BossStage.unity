@@ -1509,7 +1509,7 @@ MonoBehaviour:
           m_Value0: 18430663346640526482
           m_Value1: 9125841653907207657
         Name: DefendRadius
-        m_Value: 30
+        m_Value: 10
     - rid: 354746613397717271
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:

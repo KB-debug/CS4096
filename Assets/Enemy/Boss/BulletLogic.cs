@@ -10,13 +10,12 @@ public class BulletLogic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.linearVelocity = transform.forward * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 force = transform.forward * speed * Time.deltaTime;
-
-        rb.AddForce(force);
+        
     }
 }
