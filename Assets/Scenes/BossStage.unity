@@ -1124,6 +1124,131 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1819562557}
   m_SourcePrefab: {fileID: 100100000, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
+--- !u!1 &1838936980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838936985}
+  - component: {fileID: 1838936984}
+  - component: {fileID: 1838936983}
+  - component: {fileID: 1838936982}
+  - component: {fileID: 1838936981}
+  m_Layer: 0
+  m_Name: Sphere (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1838936981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838936980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d978c8035eaa664d9a3d77db8eb14f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactables
+  whatInteractable: 1
+--- !u!135 &1838936982
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838936980}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1838936983
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838936980}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1838936984
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838936980}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1838936985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838936980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.9, y: 1.19, z: 52.69}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2036095850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6211514808735781699, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
@@ -1297,7 +1422,6 @@ MonoBehaviour:
   - rid: 2843803934292181156
   - rid: 2843803934292181359
   - rid: 2843803934614880687
-  - rid: 2843803939790389515
   - rid: 354746564483744546
   - rid: 354746564483744547
   - rid: 354746587937768189
@@ -1305,6 +1429,10 @@ MonoBehaviour:
   - rid: 354746589600023246
   - rid: 354746607995716001
   - rid: 354746609245356205
+  - rid: 354746610573116138
+  - rid: 354746613397717269
+  - rid: 354746613397717271
+  - rid: 354746613428126471
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1317,7 +1445,7 @@ MonoBehaviour:
           m_Value0: 6727220730957072140
           m_Value1: 13695514716908476988
         Name: BulletPrefab
-        m_Value: {fileID: 9046564422879411965, guid: c8006a55bf3921b468b42177420ca822, type: 3}
+        m_Value: {fileID: 0}
     - rid: 354746564483744547
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1366,6 +1494,38 @@ MonoBehaviour:
           m_Value1: 10659300590411741896
         Name: MaxJump
         m_Value: 3
+    - rid: 354746610573116138
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5759190586737076326
+          m_Value1: 8485021618657874809
+        Name: CanEscape
+        m_Value: 1
+    - rid: 354746613397717269
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 18430663346640526482
+          m_Value1: 9125841653907207657
+        Name: DefendRadius
+        m_Value: 30
+    - rid: 354746613397717271
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13945166854074374636
+          m_Value1: 3127663282148919339
+        Name: PowerUpPoint
+        m_Value: {fileID: 1838936985}
+    - rid: 354746613428126471
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9925680067534836766
+          m_Value1: 8592228017797437197
+        Name: CanDefend
+        m_Value: 1
     - rid: 2843803872127352848
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1414,18 +1574,6 @@ MonoBehaviour:
           m_Value1: 16833692901200959550
         Name: ChaseRange
         m_Value: 35
-    - rid: 2843803939790389515
-      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 2202832659808890530
-          m_Value1: 13108919563230204627
-        Name: Shuffle for idle
-        m_Value:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
 --- !u!114 &2130528742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,3 +1645,4 @@ SceneRoots:
   - {fileID: 1483713805}
   - {fileID: 781581493}
   - {fileID: 1799177860}
+  - {fileID: 1838936985}

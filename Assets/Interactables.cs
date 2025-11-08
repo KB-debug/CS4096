@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class Interactables : MonoBehaviour
 {
+
+    [SerializeField] private typeOfInteractable whatInteractable;
+
+
+    enum typeOfInteractable
+    {
+        Locker,
+        AttackUp,
+        Hp
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +32,27 @@ public class Interactables : MonoBehaviour
         if (DebugController.InteractLog)
             Debug.Log("Interaction Occured");
 
-        PlayerStats.ClearStealth();
+        switch (whatInteractable)
+        {
+            case typeOfInteractable.Locker:
+                PlayerStats.ClearStealth();
+                return;
+
+            case typeOfInteractable.AttackUp:
+
+                Debug.Log("Attack Type");
+                Destroy(gameObject);
+                return;
+
+            case typeOfInteractable.Hp:
+
+                Debug.Log("HP Type");
+                Destroy(gameObject);
+                return;
+
+        }
+
+        
         
     }
 }
