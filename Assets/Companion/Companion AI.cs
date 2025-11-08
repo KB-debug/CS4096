@@ -9,12 +9,29 @@ public class CompanionAI : MonoBehaviour
     public float stoppingDistance = 1f;
     public float turnSpeed = 5f;
 
+    [Header("Idle Settings")]
+    public float idleWanderRadius = 3f;
+    public float idleBreakDistance = 2.5f;
+    public float playerStillThreshold = 0.05f;
+    public float timeToIdle = 5f;
+    public float idleMinDistanceFromPlayer = 3f;
+
+    private float stillTimer = 0f;
+    private Vector3 lastPlayerPosition;
+
+    [HideInInspector] public Vector3 idleOrigin;
+
     [Header("Enemy Detection Settings")]
     public float enemyDetectionRadius = 10f;
     public string[] enemyTags = { "Drone", "Guard" };
 
     [Header("NavMesh Agent")]
     public NavMeshAgent agent;
+
+    
+    [HideInInspector] public FollowState followState;
+    [HideInInspector] public IdleState idleState;
+    private CompanionState currentState;
 
     private void Start()
     {
@@ -25,35 +42,81 @@ public class CompanionAI : MonoBehaviour
             agent = GetComponent<NavMeshAgent>();
 
         agent.stoppingDistance = stoppingDistance;
+
+       
+        followState = new FollowState(this);
+        idleState = new IdleState(this);
+
+       
+        SwitchState(followState);
+
+        lastPlayerPosition = player.position;
     }
 
     private void Update()
     {
-        FollowPlayer();
+        UpdatePlayerStillness();
+        currentState.Update();
+
         DetectEnemies();
     }
 
-    private void FollowPlayer()
+    public void SwitchState(CompanionState newState)
+    {
+        if (currentState != null)
+            currentState.Exit();
+
+        currentState = newState;
+        currentState.Enter();
+    }
+
+    private void UpdatePlayerStillness()
+    {
+        float movement = Vector3.Distance(player.position, lastPlayerPosition);
+
+        if (movement < playerStillThreshold)
+            stillTimer += Time.deltaTime;
+        else
+            stillTimer = 0f;
+
+        lastPlayerPosition = player.position;
+    }
+
+    public bool PlayerStoppedLongEnough() => stillTimer >= timeToIdle;
+
+    public void FollowPlayerLogic()
     {
         if (!player) return;
 
-        Vector3 direction = player.position - transform.position;
-        float distance = direction.magnitude;
+        Vector3 dir = player.position - transform.position;
+        float distance = dir.magnitude;
 
         if (distance > followDistance)
         {
             agent.isStopped = false;
-            agent.SetDestination(player.position - direction.normalized * 1f);
+            agent.SetDestination(player.position - dir.normalized * 1f);
         }
         else
         {
             agent.isStopped = true;
         }
 
-        if (direction != Vector3.zero)
+        if (dir != Vector3.zero)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+        }
+    }
+
+    private Vector3 currentTarget;
+
+    public void Wander(Vector3 target)
+    {
+        if (target != currentTarget)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(target);
+            currentTarget = target;
         }
     }
 
@@ -72,7 +135,6 @@ public class CompanionAI : MonoBehaviour
 
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-                // ✅ Highlight if in range, disable if out of range
                 if (distance <= enemyDetectionRadius)
                 {
                     outline.enabled = true;
@@ -88,22 +150,29 @@ public class CompanionAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, followDistance);
+        Vector3 origin = idleOrigin;
+        if (origin == Vector3.zero && player != null)
+            origin = player.position;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectionRadius);
-        /*
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        Vector3 forward = transform.forward * detectionRadius;
-        Quaternion leftRotation = Quaternion.Euler(0, -angle, 0);
-        Quaternion rightRotation = Quaternion.Euler(0, angle, 0);
-        Vector3 leftDir = leftRotation * forward;
-        Vector3 rightDir = rightRotation * forward;
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + leftDir);
-        Gizmos.DrawLine(transform.position, transform.position + rightDir);
-        */
+        //idle break distance 
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(origin, idleBreakDistance);
+
+        // wander radius 
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(origin, idleWanderRadius);
+
+        // current wander target
+        if (agent != null && agent.hasPath)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, agent.destination);
+            Gizmos.DrawSphere(agent.destination, 0.2f);
+        }
     }
+
+
+
 }
+
+
