@@ -66,9 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cc0503654f36b48842ca5d2a70ad09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  expandSpeed: 30
+  expandSpeed: 60
   damage: 99999
-  maxSize: 200
+  maxSize: 400
   layersToInclude:
     serializedVersion: 2
     m_Bits: 4352
