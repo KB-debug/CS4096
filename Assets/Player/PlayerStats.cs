@@ -21,16 +21,34 @@ public class PlayerStats : MonoBehaviour
     public Slider stealthBar;
 
 
+
+    public float maxHealth;
+    public float currentHealth;
+
+
+
+
+    public static float maxHealthS;
+    public static float currentHealthS;
+    private static float currentHealthClampedS;
+
+    public Slider healthBar;
+
     void Start()
     {
         maxStealthS = maxStealth;
         stealthDecayS = stealthDecay;
         stealthSpeedS = stealthSpeed;
         stealthBar.maxValue = maxStealth;
+
+        currentHealthS = maxHealth;
+        healthBar.maxValue = maxHealth;
     }
 
     void Update()
     {
+        UpdateHealthSlider();
+        currentHealth = currentHealthS;
         UpdateStealthSlider();
         currentStealth = Mathf.Clamp(currentStealth,0f, maxStealth);
         if (!CheckIfAnyEnemySeesPlayer())
@@ -91,5 +109,19 @@ public class PlayerStats : MonoBehaviour
    public static void ClearStealth()
     {
         currentStealth = 0;
+    }
+
+
+    public static void PlayerTakeDamage(float Amount)
+    {
+        currentHealthS -= Amount;
+        
+    }
+
+    private void UpdateHealthSlider()
+    {
+        currentHealthClampedS = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        healthBar.value = currentHealthClampedS;
+
     }
 }

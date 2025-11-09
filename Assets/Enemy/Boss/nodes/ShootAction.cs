@@ -12,7 +12,8 @@ public partial class ShootAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> AgentShootPoint;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<GameObject> BulletPrefab;
-
+    [SerializeReference] public BlackboardVariable<float> BulletSpeed;
+    [SerializeReference] public BlackboardVariable<float> Damage;
     protected override Status OnStart()
     {
         GameObject shootPoint = AgentShootPoint.Value;
@@ -26,7 +27,9 @@ public partial class ShootAction : Action
         }
 
         GameObject bullet = UnityEngine.Object.Instantiate(bulletPrefab,shootPoint.transform.position,shootPoint.transform.rotation);
-
+        BulletLogic logic = bullet.GetComponent<BulletLogic>();
+        logic.speed = BulletSpeed.Value;
+        logic.damage = Damage.Value;
         return Status.Running;
     }
 
