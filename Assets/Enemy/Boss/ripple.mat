@@ -38,13 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.1
-    - _Edge_Blend: 0.5
-    - _Effect_Radius: 1
-    - _Frequency: 1
+    - _Amplitude: 0
+    - _Edge_Blend: 0.3
+    - _Effect_Radius: 20
+    - _Frequency: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ripple_Density: 3.5
+    - _Ripple_Density: 0
     - _Speed: 0
     m_Colors:
     - _Ripple_Origin: {r: 0, g: 0, b: 0, a: 0}

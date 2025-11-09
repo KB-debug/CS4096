@@ -46,12 +46,10 @@ public class Explode : MonoBehaviour
     {
         float timer = 0f;
 
-        // Flash for 'explosionDelay' seconds
         while (timer < explosionDelay)
         {
             timer += Time.deltaTime;
 
-            // Make color oscillate between original and flashColor
             for (int i = 0; i < renderers.Length; i++)
             {
                 float t = Mathf.PingPong(Time.time * flashSpeed, 1f);
@@ -61,7 +59,6 @@ public class Explode : MonoBehaviour
             yield return null;
         }
 
-        // Reset color just before destruction
         for (int i = 0; i < renderers.Length; i++)
         {
             renderers[i].material.color = originalColors[i];

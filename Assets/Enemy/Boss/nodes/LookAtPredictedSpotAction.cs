@@ -63,9 +63,17 @@ public partial class LookAtPredictedSpotAction : Action
 
             targetPosition += playerVel/3 * timeToTarget;
         }
+
+        Vector3 direction = (targetPosition - self.position).normalized;
         if (LimitToYAxis.Value)
         {
             targetPosition.y = Agent.Value.position.y;
+            Quaternion lookRot = Quaternion.LookRotation(direction, Vector3.up);
+            Vector3 euler = lookRot.eulerAngles;
+
+    
+            euler.z = 0f;
+
         }
 
         Agent.Value.LookAt(targetPosition, Agent.Value.up);

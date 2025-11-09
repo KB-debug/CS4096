@@ -67,3 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   expandSpeed: 30
+  damage: 99999
+  maxSize: 200
+  layersToInclude:
+    serializedVersion: 2
+    m_Bits: 4352

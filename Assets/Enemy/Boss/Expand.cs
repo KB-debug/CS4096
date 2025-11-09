@@ -7,7 +7,7 @@ public class Expand : MonoBehaviour
 
     public float maxSize = 200f;
 
-
+    public LayerMask layersToInclude;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,15 +32,12 @@ public class Expand : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
 
-
-
-
             GameObject player = other.gameObject;
 
             Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (Physics.Raycast(transform.position, dirToPlayer, out RaycastHit hit ,distanceToPlayer ))
+            if (Physics.Raycast(transform.position, dirToPlayer, out RaycastHit hit ,distanceToPlayer,layersToInclude ))
             {
                 if (hit.transform == player.transform)
                 {

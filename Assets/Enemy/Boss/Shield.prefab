@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8869919850586065350}
   - component: {fileID: 3739181303072239957}
   - component: {fileID: 3535011057025457741}
-  m_Layer: 0
+  - component: {fileID: -1239733110426099556}
+  m_Layer: 12
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.86353, y: 0, z: 7.04654}
-  m_LocalScale: {x: 18.21974, y: 18.21974, z: 18.21974}
+  m_LocalScale: {x: 1, y: 18.21974, z: 18.21974}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,11 +104,30 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1239733110426099556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892964432603675364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b782f228efebca847b87a821344acd84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  expandSpeed: 3
+  damage: 2
+  maxSize: 20
+  duration: 10
+  phase: 3
+  flashSpeed: 10
+  flashColor: {r: 1, g: 0, b: 0, a: 1}

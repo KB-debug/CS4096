@@ -557,6 +557,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2958901590384458504, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -239
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340548809772635482, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -239
+      objectReference: {fileID: 0}
     - target: {fileID: 6660817107228708615, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -762,6 +770,7 @@ GameObject:
   - component: {fileID: 1295218081}
   - component: {fileID: 1295218080}
   - component: {fileID: 1295218079}
+  - component: {fileID: 1295218083}
   m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
@@ -816,7 +825,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 375564039dab1bf43880e6e9e9e268ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -862,6 +871,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295218083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295218078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa589a832e7d5444a4b96d9e65a6d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  bga: {fileID: 2130528741}
+  mat: {fileID: 2100000, guid: 375564039dab1bf43880e6e9e9e268ea, type: 2}
 --- !u!4 &1300998430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3718050458817649922, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
@@ -1120,6 +1143,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2130528739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1748938196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4845844692035535537, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+  m_PrefabInstance: {fileID: 1065922152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &1749531647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1244,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1
@@ -1228,6 +1262,14 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 2036095850}
+    - target: {fileID: 1248048042903858133, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1748938196}
+    - target: {fileID: 1248048042903858133, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1248048042903858133, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
       propertyPath: stealthBar
       value: 
@@ -1332,9 +1374,9 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1403,7 +1445,7 @@ Transform:
   m_GameObject: {fileID: 1838936980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.27, y: 0, z: 18.19}
+  m_LocalPosition: {x: -20.27, y: 1.467, z: 18.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1413,6 +1455,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6211514808735781699, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
   m_PrefabInstance: {fileID: 1193509454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2076139882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2396919765129150895, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+  m_PrefabInstance: {fileID: 1065922152}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2130528735
 GameObject:
@@ -1595,6 +1642,13 @@ MonoBehaviour:
   - rid: 354746613428126471
   - rid: 354746636113281454
   - rid: 354746636113281455
+  - rid: 354746638026671062
+  - rid: 354746638026671063
+  - rid: 354746638026671064
+  - rid: 354746638406516879
+  - rid: 354746638406517341
+  - rid: 354746638406517614
+  - rid: 354746639532687586
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1708,6 +1762,62 @@ MonoBehaviour:
           m_Value1: 11029889619827643002
         Name: ShieldPrefab
         m_Value: {fileID: 3892964432603675364, guid: 1b358f99b2ec0e24b90521ae6e2fd1c1, type: 3}
+    - rid: 354746638026671062
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14181675377771702683
+          m_Value1: 2485536314240631154
+        Name: MaxRippleDensity
+        m_Value: 10
+    - rid: 354746638026671063
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6947877569531155330
+          m_Value1: 16670750340358349811
+        Name: MaxAmplitude
+        m_Value: 0.1
+    - rid: 354746638026671064
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 15367855001132024093
+          m_Value1: 10893790333425750361
+        Name: MaxFrequency
+        m_Value: 2
+    - rid: 354746638406516879
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16429690629013041019
+          m_Value1: 14590139827200851584
+        Name: JumpAttackPrefab
+        m_Value: {fileID: 6779060253786706971, guid: 94c075083cb0392469b08193d6407ff9, type: 3}
+    - rid: 354746638406517341
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6462146233602594790
+          m_Value1: 12905655971613626611
+        Name: BulletSpeed
+        m_Value: 30
+    - rid: 354746638406517614
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4593070340701359917
+          m_Value1: 14652764531386584731
+        Name: Damage
+        m_Value: 2
+    - rid: 354746639532687586
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4184693565617661444
+          m_Value1: 5369566045767675295
+        Name: BossHealthBar
+        m_Value: {fileID: 2076139882}
     - rid: 2843803872127352848
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
