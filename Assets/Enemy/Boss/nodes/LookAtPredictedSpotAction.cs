@@ -67,16 +67,19 @@ public partial class LookAtPredictedSpotAction : Action
         Vector3 direction = (targetPosition - self.position).normalized;
         if (LimitToYAxis.Value)
         {
-            targetPosition.y = Agent.Value.position.y;
-            Quaternion lookRot = Quaternion.LookRotation(direction, Vector3.up);
-            Vector3 euler = lookRot.eulerAngles;
-
-    
-            euler.z = 0f;
+            targetPosition.y = self.position.y;
+            
 
         }
 
-        Agent.Value.LookAt(targetPosition, Agent.Value.up);
+  
+
+        // Create rotation that looks at target without rolling
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            self.rotation = targetRotation;
+        }
     }
 }
 

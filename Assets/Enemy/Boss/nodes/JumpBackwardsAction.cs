@@ -21,6 +21,7 @@ public partial class JumpBackwardsAction : Action
 
     protected override Status OnStart()
     {
+        Debug.Log("Started Node");
         if (Agent?.Value == null)
             return Status.Failure;
 
@@ -53,6 +54,7 @@ public partial class JumpBackwardsAction : Action
             if (!Physics.Raycast(startPos, dir, jumpDistance.Value))
             {
                 targetPos = startPos + dir * jumpDistance.Value;
+                targetPos.y = 3f;
                 foundSafeSpot = true;
                 break;
             }
@@ -65,10 +67,10 @@ public partial class JumpBackwardsAction : Action
             return Status.Failure;
         }
 
-
+        Debug.Log("Routine About To Start");
         Agent.Value.GetComponent<MonoBehaviour>().StartCoroutine(LeapAlongCurve(Agent.Value, targetPos, jumpHeight.Value, jumpDuration.Value));
         isJumping = true;
-       
+        Debug.Log("RoutineBegan");
         return Status.Running;
     }
 
@@ -79,11 +81,13 @@ public partial class JumpBackwardsAction : Action
 
     protected override void OnEnd()
     {
+        Debug.Log("Jump end");
         isJumping = false;
     }
 
     private IEnumerator LeapAlongCurve(Transform agent, Vector3 target, float height, float duration)
     {
+        Debug.Log("Leap Start");
         Vector3 startPos = agent.position;
         float t = 0f;
 

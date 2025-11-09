@@ -28,6 +28,7 @@ public partial class SpecialJumpAttackAction : Action
 
         startPos = Agent.Value.position;
         endPos = Location.Value.position;
+        endPos.y = 3f;
         elapsed = 0f;
         initialized = true;
 
