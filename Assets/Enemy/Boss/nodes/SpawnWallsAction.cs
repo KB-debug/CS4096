@@ -12,7 +12,7 @@ public partial class SpawnWallsAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> WallPrefab;
     [SerializeReference] public BlackboardVariable<List<GameObject>> WallsPos;
-
+    [SerializeReference] public BlackboardVariable<int> Phase;
 
 
     protected override Status OnStart()
@@ -24,6 +24,8 @@ public partial class SpawnWallsAction : Action
         {
 
             GameObject Wall = UnityEngine.Object.Instantiate(wallPrefab, wallpos.transform.position,wallpos.transform.rotation);
+            ExpandAndDestroy logic = Wall.GetComponent<ExpandAndDestroy>();
+            logic.phase = Phase.Value;
         }
         return Status.Running;
     }

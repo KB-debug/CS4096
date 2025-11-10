@@ -39,14 +39,16 @@ public class Interactables : MonoBehaviour
                 return;
 
             case typeOfInteractable.AttackUp:
-
+                
                 Debug.Log("Attack Type");
+                BladeCollision.InceaseDamage(1);
                 Destroy(gameObject);
                 return;
 
             case typeOfInteractable.Hp:
 
                 Debug.Log("HP Type");
+                PlayerStats.PlayerHeal(5);
                 Destroy(gameObject);
                 return;
 

@@ -37,4 +37,17 @@ public class GroundCheck : MonoBehaviour
         }
     }
 
+    //private void OnDrawGizmos()
+    //{
+    //    if (groundCheckPoint == null) return;
+
+    //    Gizmos.color = isGrounded ? Color.green : Color.red;
+
+
+    //    Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+
+    //    Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.3f);
+    //    Gizmos.DrawSphere(groundCheckPoint.position, groundCheckRadius * 0.8f);
+    //}
+
 }

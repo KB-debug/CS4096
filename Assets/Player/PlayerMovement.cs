@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-
+    [Header("Player Atacks")]
+    public Animator animator;
 
     private Vector3 velocity;
    
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private float standHeight;
     private float speed;
 
+
+  
     [HideInInspector] public Vector3 Velocity { get; private set; }
     private Vector3 lastPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

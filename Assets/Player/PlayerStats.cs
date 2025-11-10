@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour
     {
         UpdateHealthSlider();
         currentHealth = currentHealthS;
+        currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
         UpdateStealthSlider();
         currentStealth = Mathf.Clamp(currentStealth,0f, maxStealth);
         if (!CheckIfAnyEnemySeesPlayer())
@@ -118,10 +119,16 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    public static void PlayerHeal(float Amount)
+    {
+        currentHealthS += Amount;
+
+    }
+
     private void UpdateHealthSlider()
     {
-        currentHealthClampedS = Mathf.Clamp(currentHealth, 0f, maxHealth);
-        healthBar.value = currentHealthClampedS;
+
+        healthBar.value = currentHealth;
 
     }
 }

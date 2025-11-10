@@ -15,6 +15,8 @@ public partial class SpecialJumpAttackAction : Action
     [SerializeReference] public BlackboardVariable<float> jumpHeight;
     [SerializeReference] public BlackboardVariable<float> jumpDuration;
 
+ 
+
     private float elapsed;
     private Vector3 startPos;
     private Vector3 endPos;
@@ -53,7 +55,10 @@ public partial class SpecialJumpAttackAction : Action
         {
             if (Attack?.Value != null)
             {
+                
                 UnityEngine.Object.Instantiate(Attack.Value,Agent.Value.position,Quaternion.identity);
+                
+
             }
             return Status.Success;
         }
