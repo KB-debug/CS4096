@@ -224,7 +224,14 @@ public class DroneAI : MonoBehaviour
 
     private void LookForPlayer()
     {
-        
+        if (PlayerStats.PlayerIsHidden())
+        {
+
+            canSeePlayer = false;
+            spottedByDrone = false;
+            return;
+
+        }
 
         float distance = Vector3.Distance(transform.position, playerLoc.position);
 
@@ -301,6 +308,9 @@ public class DroneAI : MonoBehaviour
 
     public bool PlayerBeingSeen() 
     {
+        if (PlayerStats.PlayerIsHidden())
+            return false;
+
         return canSeePlayer;
     }
 

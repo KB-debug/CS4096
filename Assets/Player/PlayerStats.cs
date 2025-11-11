@@ -68,7 +68,7 @@ public class PlayerStats : MonoBehaviour
     public static void AddStealth()
     {
         currentStealth += stealthSpeedS * Time.deltaTime;
-        Debug.Log("Add Stealth");
+       // Debug.Log("Add Stealth");
     }
 
     public static void RemoveStealth()

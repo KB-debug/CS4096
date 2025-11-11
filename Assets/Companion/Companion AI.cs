@@ -33,6 +33,11 @@ public class CompanionAI : MonoBehaviour
     [HideInInspector] public IdleState idleState;
     private CompanionState currentState;
 
+    public MeshRenderer meshRenderer;
+
+   
+
+
     private void Start()
     {
         if (player == null)
@@ -147,6 +152,19 @@ public class CompanionAI : MonoBehaviour
             }
         }
     }
+
+    public void SetVisibility(bool visible)
+    {
+        if (meshRenderer != null)
+        {
+            meshRenderer.enabled = visible;
+           // meshRenderer.shadowCastingMode = visible
+                //? UnityEngine.Rendering.ShadowCastingMode.On
+                //: UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+    }
+
+
 
     private void OnDrawGizmosSelected()
     {
