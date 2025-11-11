@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public static float stealthDecayS;
     public static float stealthSpeedS;
     private static float currentStealth = 0f;
+    public static bool isHidden = false;
 
     public Slider stealthBar;
 
@@ -59,7 +60,7 @@ public class PlayerStats : MonoBehaviour
 
     public static float GetStealth()
     {
-        Debug.Log(currentStealth);
+       // Debug.Log(currentStealth);
         return currentStealth;
 
     }
@@ -122,6 +123,12 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealthClampedS = Mathf.Clamp(currentHealth, 0f, maxHealth);
         healthBar.value = currentHealthClampedS;
+
+    }
+
+    public static bool PlayerIsHidden()
+    {
+        return isHidden;
 
     }
 }

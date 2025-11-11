@@ -25,6 +25,13 @@ public class DroneAI : MonoBehaviour
     public Transform patrolStart;
     private Transform target;
 
+    [Header("Shooting Settings")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float shootingRange = 10f;
+    public float fireRate = 1f;
+    private float fireCooldown = 0f;
+
     //moved to PlayerStats
     //[Header("Stealth Settings")]
     //[Range(0.0f, 10.0f)]
@@ -148,7 +155,13 @@ public class DroneAI : MonoBehaviour
         LookAtPlayer();
         agent.isStopped = false;
         agent.SetDestination(playerLoc.position);
-        
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerLoc.position);
+        if (distanceToPlayer <= shootingRange)
+        {
+            ShootAtPlayer();
+        }
+
     }
 
 
@@ -291,7 +304,21 @@ public class DroneAI : MonoBehaviour
         return canSeePlayer;
     }
 
-    
+    private void ShootAtPlayer()
+    {
+        if (fireCooldown <= 0f)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            bullet.transform.forward = (playerLoc.position - firePoint.position).normalized;
+
+            fireCooldown = 1f / fireRate;
+        }
+        else
+        {
+            fireCooldown -= Time.deltaTime;
+        }
+    }
 
 
     void OnDrawGizmosSelected()

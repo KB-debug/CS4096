@@ -107,8 +107,7 @@ public class GuardAI : MonoBehaviour
         }
 
 
-        Debug.Log(canSeePlayer);
-
+       // Debug.Log(canSeePlaye
 
         //else
         //{
@@ -230,7 +229,14 @@ public class GuardAI : MonoBehaviour
 
     private void LookForPlayer()
     {
+        if (PlayerStats.PlayerIsHidden())
+        {
 
+            canSeePlayer = false;
+            spottedByGuard = false;
+            return;
+
+        }
 
         float distance = Vector3.Distance(transform.position, playerLoc.position);
 
@@ -332,6 +338,9 @@ public class GuardAI : MonoBehaviour
 
     public bool PlayerBeingSeen()
     {
+        if (PlayerStats.PlayerIsHidden())
+            return false;
+
         return canSeePlayer;
     }
 
@@ -341,13 +350,10 @@ public class GuardAI : MonoBehaviour
     {
         if (fireCooldown <= 0f)
         {
-            // Spawn bullet
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-            // Rotate bullet toward player
             bullet.transform.forward = (playerLoc.position - firePoint.position).normalized;
 
-            // Reset cooldown
             fireCooldown = 1f / fireRate;
         }
         else
