@@ -49,5 +49,21 @@ public class PatrolPointsLogic : MonoBehaviour
                     Debug.Log("DronePathUpdated");
             }
         }
+
+        if (other != null && other.gameObject.CompareTag("Guard"))
+        {
+            Debug.Log("Guard Entered");
+            GuardAI obj = other.gameObject.GetComponent<GuardAI>();
+            Debug.Log("updated points");
+            if (DebugController.DroneLog)
+                Debug.Log("Guard Entered");
+
+            if (obj != null)
+            {
+                obj.UpdatePatrolPoints(nearbyPoints);
+                if (DebugController.DroneLog)
+                    Debug.Log("GuardPathUpdated");
+            }
+        }
     }
 }
