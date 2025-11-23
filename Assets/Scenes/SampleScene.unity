@@ -7646,7 +7646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3937279657652939759, guid: d8cf7f9aa2ad47443827344a6a4d892c, type: 3}
       propertyPath: m_Name
-      value: Drone b
+      value: Drone (b)
       objectReference: {fileID: 0}
     - target: {fileID: 6570128718980204763, guid: d8cf7f9aa2ad47443827344a6a4d892c, type: 3}
       propertyPath: speed
@@ -7868,6 +7868,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6211514808735781699, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377777810460190891, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7345674734149127547, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
