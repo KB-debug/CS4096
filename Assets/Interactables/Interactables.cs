@@ -2,18 +2,55 @@ using UnityEngine;
 
 public class Interactables : MonoBehaviour
 {
+
+    [SerializeField] private typeOfInteractable whatInteractable;
+
+
     public Camera lockerCamera;
     private bool playerInside = false;
     public Camera playerCamera;
 
     public CompanionAI companion;
 
+    enum typeOfInteractable
+    {
+        Locker,
+        AttackUp,
+        Hp
+    }
+
     public void Interact()
     {
-        if (!playerInside)
-            EnterLocker();
-        else
-            ExitLocker();
+        if (DebugController.InteractLog)
+            Debug.Log("Interaction Occured");
+
+        switch (whatInteractable)
+        {
+            case typeOfInteractable.Locker:
+                if (!playerInside)
+                    EnterLocker();
+                else
+                    ExitLocker();
+                return;
+
+            case typeOfInteractable.AttackUp:
+                
+                Debug.Log("Attack Type");
+                BladeCollision.InceaseDamage(1);
+                Destroy(gameObject);
+                return;
+
+            case typeOfInteractable.Hp:
+
+                Debug.Log("HP Type");
+                PlayerStats.PlayerHeal(5);
+                Destroy(gameObject);
+                return;
+
+        }
+
+        
+        
     }
 
     private void EnterLocker()

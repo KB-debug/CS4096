@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Interactables : MonoBehaviour
+public class InteractablesJas : MonoBehaviour
 {
 
     [SerializeField] private typeOfInteractable whatInteractable;

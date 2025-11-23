@@ -126,6 +126,12 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    public static void PlayerHeal(float Amount)
+    {
+        currentHealthS += Amount;
+
+    }
+
     public static bool PlayerIsHidden()
     {
         return isHidden;

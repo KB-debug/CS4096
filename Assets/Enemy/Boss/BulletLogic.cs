@@ -1,7 +1,7 @@
 using Unity.Behavior;
 using UnityEngine;
 
-public class BulletLogic : MonoBehaviour
+public class BulletLogicBoss : MonoBehaviour
 {
     public float speed;
     public float damage;
