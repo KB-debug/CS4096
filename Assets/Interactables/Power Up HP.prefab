@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6916481569893347949}
   - component: {fileID: 2012906449373423577}
   - component: {fileID: 397963208622032809}
-  - component: {fileID: 7072851935780942574}
   - component: {fileID: 490259645200229875}
+  - component: {fileID: 1399482314196725529}
   m_Layer: 0
   m_Name: Power Up HP
   m_TagString: Untagged
@@ -113,19 +113,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7072851935780942574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8182058722729015266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d978c8035eaa664d9a3d77db8eb14f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactables
-  whatInteractable: 2
 --- !u!114 &490259645200229875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,5 +124,21 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7f157c26af1fb643b82567afde9f38d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::LogSpawn
   spawner: {fileID: 0}
+--- !u!114 &1399482314196725529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182058722729015266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cdf947ae51b7740a595a4fb1c8d04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactables
+  whatInteractable: 2
+  lockerCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
+  companion: {fileID: 0}
