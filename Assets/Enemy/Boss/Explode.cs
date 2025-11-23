@@ -9,10 +9,16 @@ public class Explode : MonoBehaviour
     public float flashSpeed = 10f;
     public Color flashColor = Color.red;
 
+    public float damage = 5f;
+
     private Transform player;
     private bool isTriggered = false;
     private Renderer[] renderers;
     private Color[] originalColors;
+
+    private SphereCollider collider;
+
+    public GameObject particles;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +30,7 @@ public class Explode : MonoBehaviour
         {
             originalColors[i] = renderers[i].material.color;
         }
+        collider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -63,8 +70,27 @@ public class Explode : MonoBehaviour
         {
             renderers[i].material.color = originalColors[i];
         }
-
+        collider.enabled = true;
         Debug.Log("Blowing Up");
+        
+        yield return new WaitForSeconds(.5f);
+        Instantiate(particles, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameObject ply = other.gameObject;
+            PlayerStats logic = ply.GetComponent<PlayerStats>();
+            if (logic != null)
+            {
+                PlayerStats.PlayerTakeDamage(damage);
+            }
+        }
     }
 }

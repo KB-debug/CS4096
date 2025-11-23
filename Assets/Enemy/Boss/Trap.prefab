@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 896335310064680639}
   - component: {fileID: 4148424511048168627}
   - component: {fileID: 77247847109171354}
+  - component: {fileID: 6985553578062544050}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -73,6 +74,8 @@ MonoBehaviour:
   explosionRadius: 5
   flashSpeed: 10
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  damage: 5
+  particles: {fileID: 8346695318990666189, guid: 26a5d81f1b2e0364dbbb6c179f387986, type: 3}
 --- !u!54 &77247847109171354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100,6 +103,27 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!135 &6985553578062544050
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971696176706697294}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2839788081035347813
 GameObject:
   m_ObjectHideFlags: 0
