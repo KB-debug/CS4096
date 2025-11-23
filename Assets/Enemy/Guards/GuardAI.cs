@@ -47,6 +47,13 @@ public class GuardAI : MonoBehaviour
     public float alertRadius;
     public LayerMask guardMask;
 
+    [Header("Shooting Settings")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float shootingRange = 10f;
+    public float fireRate = 1f;
+    private float fireCooldown = 0f;
+
     private GuardState currentState = GuardState.Patrolling;
     private enum GuardState
     {
@@ -100,8 +107,7 @@ public class GuardAI : MonoBehaviour
         }
 
 
-        Debug.Log(canSeePlayer);
-
+       // Debug.Log(canSeePlaye
 
         //else
         //{
@@ -154,6 +160,12 @@ public class GuardAI : MonoBehaviour
         LookAtPlayer();
         agent.isStopped = false;
         agent.SetDestination(playerLoc.position);
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerLoc.position);
+        if (distanceToPlayer <= shootingRange)
+        {
+            ShootAtPlayer();
+        }
 
     }
 
@@ -217,7 +229,14 @@ public class GuardAI : MonoBehaviour
 
     private void LookForPlayer()
     {
+        if (PlayerStats.PlayerIsHidden())
+        {
 
+            canSeePlayer = false;
+            spottedByGuard = false;
+            return;
+
+        }
 
         float distance = Vector3.Distance(transform.position, playerLoc.position);
 
@@ -319,12 +338,29 @@ public class GuardAI : MonoBehaviour
 
     public bool PlayerBeingSeen()
     {
+        if (PlayerStats.PlayerIsHidden())
+            return false;
+
         return canSeePlayer;
     }
 
 
-    
 
+    private void ShootAtPlayer()
+    {
+        if (fireCooldown <= 0f)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            bullet.transform.forward = (playerLoc.position - firePoint.position).normalized;
+
+            fireCooldown = 1f / fireRate;
+        }
+        else
+        {
+            fireCooldown -= Time.deltaTime;
+        }
+    }
 
 
 

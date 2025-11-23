@@ -25,6 +25,13 @@ public class DroneAI : MonoBehaviour
     public Transform patrolStart;
     private Transform target;
 
+    [Header("Shooting Settings")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float shootingRange = 10f;
+    public float fireRate = 1f;
+    private float fireCooldown = 0f;
+
     //moved to PlayerStats
     //[Header("Stealth Settings")]
     //[Range(0.0f, 10.0f)]
@@ -36,18 +43,12 @@ public class DroneAI : MonoBehaviour
     //[Range(0.1f, 2.0f)]
     //public float decaySpeed = 0.5f;
     private Vector3 lastKnownPlayerPosition;
-
-    // Shared alert level across all drones
-    // (When one drone spots the player, all enter the same state)
     private static float noticeMeter;
 
     [Header("Search Settings")]
     public float sweepTime;
     private float sweepAngle;
 
-
-    // Shared state across all drones
-    // (When one drone spots the player, all enter the same state)
     private static GuardState currentState = GuardState.Patrolling;
     private enum GuardState
     {
@@ -96,7 +97,9 @@ public class DroneAI : MonoBehaviour
                 SearchNearby();
                 renderer.material.color = Color.yellow;
                 break;
-                
+                //case DroneState.Returning:
+                //    ReturnUpdate();
+                //    break;
         }
 
 
@@ -152,7 +155,13 @@ public class DroneAI : MonoBehaviour
         LookAtPlayer();
         agent.isStopped = false;
         agent.SetDestination(playerLoc.position);
-        
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerLoc.position);
+        if (distanceToPlayer <= shootingRange)
+        {
+            ShootAtPlayer();
+        }
+
     }
 
 
@@ -215,7 +224,14 @@ public class DroneAI : MonoBehaviour
 
     private void LookForPlayer()
     {
-        
+        if (PlayerStats.PlayerIsHidden())
+        {
+
+            canSeePlayer = false;
+            spottedByDrone = false;
+            return;
+
+        }
 
         float distance = Vector3.Distance(transform.position, playerLoc.position);
 
@@ -292,10 +308,27 @@ public class DroneAI : MonoBehaviour
 
     public bool PlayerBeingSeen() 
     {
+        if (PlayerStats.PlayerIsHidden())
+            return false;
+
         return canSeePlayer;
     }
 
-    
+    private void ShootAtPlayer()
+    {
+        if (fireCooldown <= 0f)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            bullet.transform.forward = (playerLoc.position - firePoint.position).normalized;
+
+            fireCooldown = 1f / fireRate;
+        }
+        else
+        {
+            fireCooldown -= Time.deltaTime;
+        }
+    }
 
 
     void OnDrawGizmosSelected()

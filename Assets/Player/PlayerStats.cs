@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public static float stealthDecayS;
     public static float stealthSpeedS;
     private static float currentStealth = 0f;
+    public static bool isHidden = false;
 
     public Slider stealthBar;
 
@@ -49,9 +50,8 @@ public class PlayerStats : MonoBehaviour
     {
         UpdateHealthSlider();
         currentHealth = currentHealthS;
-        currentHealth = Mathf.Clamp(currentHealth,0f,maxHealth);
         UpdateStealthSlider();
-        currentStealth = Mathf.Clamp(currentStealth,0f, maxStealth);
+        currentStealth = Mathf.Clamp(currentStealth, 0f, maxStealth);
         if (!CheckIfAnyEnemySeesPlayer())
         {
             RemoveStealth();
@@ -60,7 +60,7 @@ public class PlayerStats : MonoBehaviour
 
     public static float GetStealth()
     {
-        Debug.Log(currentStealth);
+       // Debug.Log(currentStealth);
         return currentStealth;
 
     }
@@ -68,7 +68,7 @@ public class PlayerStats : MonoBehaviour
     public static void AddStealth()
     {
         currentStealth += stealthSpeedS * Time.deltaTime;
-        Debug.Log("Add Stealth");
+       // Debug.Log("Add Stealth");
     }
 
     public static void RemoveStealth()
@@ -78,7 +78,7 @@ public class PlayerStats : MonoBehaviour
 
     public static float MaxOutStealth()
     {
-        
+
         return maxStealthS;
     }
 
@@ -107,7 +107,7 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-   public static void ClearStealth()
+    public static void ClearStealth()
     {
         currentStealth = 0;
     }
@@ -116,19 +116,19 @@ public class PlayerStats : MonoBehaviour
     public static void PlayerTakeDamage(float Amount)
     {
         currentHealthS -= Amount;
-        
-    }
-
-    public static void PlayerHeal(float Amount)
-    {
-        currentHealthS += Amount;
 
     }
 
     private void UpdateHealthSlider()
     {
+        currentHealthClampedS = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        healthBar.value = currentHealthClampedS;
 
-        healthBar.value = currentHealth;
+    }
+
+    public static bool PlayerIsHidden()
+    {
+        return isHidden;
 
     }
 }

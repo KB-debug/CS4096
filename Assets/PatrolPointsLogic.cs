@@ -52,9 +52,7 @@ public class PatrolPointsLogic : MonoBehaviour
 
         if (other != null && other.gameObject.CompareTag("Guard"))
         {
-            Debug.Log("Guard Entered");
             GuardAI obj = other.gameObject.GetComponent<GuardAI>();
-            Debug.Log("updated points");
             if (DebugController.DroneLog)
                 Debug.Log("Guard Entered");
 
@@ -65,5 +63,6 @@ public class PatrolPointsLogic : MonoBehaviour
                     Debug.Log("GuardPathUpdated");
             }
         }
+
     }
 }
