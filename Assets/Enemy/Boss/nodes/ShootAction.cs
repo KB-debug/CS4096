@@ -27,7 +27,7 @@ public partial class ShootAction : Action
         }
 
         GameObject bullet = UnityEngine.Object.Instantiate(bulletPrefab,shootPoint.transform.position,shootPoint.transform.rotation);
-        BulletLogic logic = bullet.GetComponent<BulletLogic>();
+        BulletLogicBoss logic = bullet.GetComponent<BulletLogicBoss>();
         logic.speed = BulletSpeed.Value;
         logic.damage = Damage.Value;
         return Status.Running;

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6063096462870348722}
   - component: {fileID: 5513160472496667231}
   - component: {fileID: 1702476051756950695}
-  - component: {fileID: 3908997134224271668}
   - component: {fileID: 6414867015293503499}
+  - component: {fileID: 7511544066674658971}
   m_Layer: 0
   m_Name: Power Up Atk
   m_TagString: Untagged
@@ -113,19 +113,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3908997134224271668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7484251882926401434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d978c8035eaa664d9a3d77db8eb14f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactables
-  whatInteractable: 1
 --- !u!114 &6414867015293503499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +126,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spawner: {fileID: 0}
+--- !u!114 &7511544066674658971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484251882926401434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cdf947ae51b7740a595a4fb1c8d04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactables
+  whatInteractable: 1
+  lockerCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
+  companion: {fileID: 0}
