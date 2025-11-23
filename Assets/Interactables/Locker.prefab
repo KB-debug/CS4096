@@ -149,7 +149,8 @@ GameObject:
   - component: {fileID: 1469072617597802696}
   - component: {fileID: 2946018701574659694}
   - component: {fileID: 928597651710225960}
-  - component: {fileID: 3684749907965775826}
+  - component: {fileID: 5460716857875434165}
+  - component: {fileID: 926341791650080075}
   m_Layer: 0
   m_Name: Locker
   m_TagString: Untagged
@@ -250,7 +251,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3684749907965775826
+--- !u!114 &5460716857875434165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815107844159790673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d978c8035eaa664d9a3d77db8eb14f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  whatInteractable: 0
+--- !u!114 &926341791650080075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
