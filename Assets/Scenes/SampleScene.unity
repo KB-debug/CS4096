@@ -7802,6 +7802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 465555539500135092, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1655085437922861662, guid: 6675080a783c7b04bb3a7281e6a20a76, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
