@@ -2107,15 +2107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3901308079538435155, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7990994
+      value: -1.14
       objectReference: {fileID: 0}
     - target: {fileID: 3901308079538435155, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.60595
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3901308079538435155, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.33
+      value: -8.39
       objectReference: {fileID: 0}
     - target: {fileID: 3901308079538435155, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2916,6 +2916,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1649718124}
     - target: {fileID: 1248048042903858133, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248048042903858133, guid: 6785fa1f88b45b044baba9e1301c3229, type: 3}
       propertyPath: stealthBar
       value: 
       objectReference: {fileID: 818050236}
@@ -3311,6 +3315,14 @@ PrefabInstance:
     - target: {fileID: 6660817107228708615, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868383818118284331, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868383818118284331, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 7986878557427818364, guid: 287708690afc4044d9a6ed128bcbfd4e, type: 3}
       propertyPath: playerInteraction
