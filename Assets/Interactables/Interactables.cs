@@ -110,6 +110,14 @@ public class Interactables : MonoBehaviour
             playerCamera.enabled = true;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Boss"))
+        {
+
+            Destroy(gameObject);
+        }
+    }
 
 
 }

@@ -6427,7 +6427,7 @@ PrefabInstance:
       objectReference: {fileID: 1857449326}
     - target: {fileID: 6172274883271543768, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: detectionRadius
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6172274883271543768, guid: ad305e5965d652349afa1c34df3da649, type: 3}
       propertyPath: guardMask.m_Bits

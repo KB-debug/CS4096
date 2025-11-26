@@ -158,9 +158,25 @@ public class CompanionAI : MonoBehaviour
         if (meshRenderer != null)
         {
             meshRenderer.enabled = visible;
-           // meshRenderer.shadowCastingMode = visible
-                //? UnityEngine.Rendering.ShadowCastingMode.On
-                //: UnityEngine.Rendering.ShadowCastingMode.Off;
+            // meshRenderer.shadowCastingMode = visible
+            //? UnityEngine.Rendering.ShadowCastingMode.On
+            //: UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+
+        if (agent != null)
+        {
+            if (!visible)
+            {
+                // Stop the companion completely when hidden
+                agent.isStopped = true;
+                agent.enabled = false;
+            }
+            else
+            {
+                // Resume movement when visible
+                agent.enabled = true;
+                agent.isStopped = false;
+            }
         }
     }
 
