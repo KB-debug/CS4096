@@ -56,6 +56,13 @@ public class PlayerStats : MonoBehaviour
         {
             RemoveStealth();
         }
+<<<<<<< Updated upstream
+=======
+
+        if (currentHealthS <= 0f) {
+            SceneManager.LoadScene("StartScene");
+        }
+>>>>>>> Stashed changes
     }
 
     public static float GetStealth()
